@@ -15,8 +15,21 @@
   --green:#69db7c;--yellow:#ffe066;--orange:#ff922b;--red:#ff6b6b;
   --pink:#f783ac;--white:#fff;--dim:rgba(255,255,255,.65);
   --card:rgba(255,255,255,.07);--border:rgba(255,255,255,.14);
+  --track:rgba(255,255,255,.12);--track-strong:rgba(255,255,255,.22);
   --r:20px;--rl:28px;--rxl:40px;
+  --bg-image:none;--show-stars:1;
 }
+/* ─── Themes ─── */
+body[data-theme="pastel"]{--bg:#fff5f7;--navy:#fde2e7;--purple:#b39ddb;--blue:#9fd3e8;--green:#a8e6cf;--yellow:#ffe1a8;--orange:#ffb59e;--red:#ff8a9c;--pink:#f7a4c2;--white:#44364d;--dim:rgba(68,54,77,.6);--card:rgba(255,255,255,.7);--border:rgba(68,54,77,.12);--track:rgba(68,54,77,.08);--track-strong:rgba(68,54,77,.18);--show-stars:0;}
+body[data-theme="bw"]{--bg:#ffffff;--navy:#f0f0f0;--purple:#1a1a1a;--blue:#4a4a4a;--green:#2a2a2a;--yellow:#666;--orange:#444;--red:#000;--pink:#888;--white:#000;--dim:rgba(0,0,0,.55);--card:rgba(0,0,0,.04);--border:rgba(0,0,0,.18);--track:rgba(0,0,0,.08);--track-strong:rgba(0,0,0,.22);--show-stars:0;}
+body[data-theme="galaxy"]{}
+body[data-theme="train"]{--bg:#1e2530;--navy:#2a3340;--purple:#d63031;--blue:#fdcb6e;--green:#55efc4;--yellow:#fab005;--orange:#e17055;--red:#d63031;--pink:#fab1a0;--white:#fff;--dim:rgba(255,255,255,.6);--card:rgba(255,255,255,.08);--border:rgba(255,255,255,.16);--track:rgba(255,255,255,.12);--track-strong:rgba(255,255,255,.22);--show-stars:0;}
+body[data-theme="girly"]{--bg:#fff0f6;--navy:#ffd6ea;--purple:#c084fc;--blue:#a78bfa;--green:#86efac;--yellow:#fcd34d;--orange:#fb923c;--red:#ec4899;--pink:#f472b6;--white:#5a3158;--dim:rgba(90,49,88,.6);--card:rgba(255,255,255,.65);--border:rgba(90,49,88,.14);--track:rgba(90,49,88,.08);--track-strong:rgba(90,49,88,.2);--show-stars:0;}
+body[data-theme="unicorn"]{--bg:linear-gradient(135deg,#fde2ff 0%,#e9d5ff 35%,#c7e9f1 70%,#fff0f6 100%);--navy:rgba(255,255,255,.6);--purple:#a855f7;--blue:#38bdf8;--green:#34d399;--yellow:#fde047;--orange:#fb923c;--red:#f43f5e;--pink:#ec4899;--white:#4c1d95;--dim:rgba(76,29,149,.6);--card:rgba(255,255,255,.55);--border:rgba(168,85,247,.22);--track:rgba(76,29,149,.08);--track-strong:rgba(168,85,247,.28);--show-stars:0;}
+body[data-theme="kawaii"]{--bg:#ffd6e7;--navy:#ffb3d1;--purple:#ff5da2;--blue:#84d3eb;--green:#b6e8c1;--yellow:#ffeb99;--orange:#ffb38a;--red:#ff5d8a;--pink:#ffb3d1;--white:#44103c;--dim:rgba(68,16,60,.6);--card:rgba(255,255,255,.7);--border:rgba(255,93,162,.22);--track:rgba(68,16,60,.08);--track-strong:rgba(255,93,162,.28);--show-stars:0;}
+body{background:var(--bg);}
+body[data-theme="unicorn"]{background:var(--bg);background-attachment:fixed;}
+#starfield{opacity:var(--show-stars);transition:opacity .3s;}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 html,body,#root{width:100%;height:100%;overflow:hidden;}
 body{font-family:'Nunito',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--white);user-select:none;-webkit-user-select:none;font-weight:600;}
@@ -80,7 +93,7 @@ body{font-family:'Nunito',system-ui,-apple-system,sans-serif;background:var(--bg
 .av-picker{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:12px 0 14px;}
 .av-opt{font-size:1.9rem;cursor:pointer;padding:5px 7px;border-radius:var(--r);border:2px solid transparent;background:none;transition:all .14s;}
 .av-opt.sel{border-color:var(--yellow);background:rgba(255,224,102,.14);}
-.inp{width:100%;background:rgba(255,255,255,.08);border:2px solid var(--border);border-radius:var(--r);color:#fff;font-family:inherit;font-size:1.25rem;font-weight:700;padding:13px 16px;outline:none;text-align:center;}
+.inp{width:100%;background:var(--card);border:2px solid var(--border);border-radius:var(--r);color:var(--white);font-family:inherit;font-size:1.25rem;font-weight:700;padding:13px 16px;outline:none;text-align:center;}
 .inp:focus{border-color:var(--purple);}
 .inp::placeholder{color:var(--dim);}
 .err{color:var(--red);font-size:.88rem;font-weight:700;text-align:center;margin-top:7px;}
@@ -94,6 +107,8 @@ body{font-family:'Nunito',system-ui,-apple-system,sans-serif;background:var(--bg
 .greeting .hav{font-size:2.8rem;line-height:1;}
 .gtext .hey{font-size:.9rem;color:var(--dim);font-weight:600;}
 .gtext .gname{font-size:1.45rem;font-weight:900;line-height:1.1;}
+.gtext .home-clock{font-size:.78rem;color:var(--dim);font-weight:700;margin-top:3px;letter-spacing:.02em;}
+.home-hdr-btns{display:flex;gap:8px;}
 .icon-btn{background:none;border:1px solid var(--border);border-radius:50%;width:44px;height:44px;font-size:1.2rem;cursor:pointer;color:var(--dim);display:flex;align-items:center;justify-content:center;transition:transform .1s;}
 .icon-btn:active{transform:scale(.88);}
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:520px;margin-bottom:20px;}
@@ -102,13 +117,13 @@ body{font-family:'Nunito',system-ui,-apple-system,sans-serif;background:var(--bg
 .stat-lbl{font-size:.68rem;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-top:4px;}
 .voucher-progress{width:100%;max-width:520px;margin-bottom:18px;}
 .vp-inner{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:var(--rl);}
-.vp-bar-bg{height:6px;background:rgba(255,255,255,.1);border-radius:100px;overflow:hidden;margin-top:6px;}
+.vp-bar-bg{height:6px;background:var(--track);border-radius:100px;overflow:hidden;margin-top:6px;}
 .vp-bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--yellow),var(--orange));transition:width .5s ease;}
 .play-wrap{width:100%;max-width:520px;margin-bottom:18px;}
 .play-btn{width:100%;font-size:1.5rem;padding:22px;min-height:82px;border-radius:var(--rxl);background:linear-gradient(135deg,#6c63ff,#ff6b6b);color:#fff;border:none;font-family:inherit;font-weight:900;cursor:pointer;animation:pulseGlow 2.5s ease-in-out infinite;transition:transform .1s;letter-spacing:.02em;}
 .play-btn:active{transform:scale(.96);animation:none;}
 .home-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:520px;}
-.act-card{padding:16px 12px;border-radius:var(--rl);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center;border:none;background:var(--card);border:1px solid var(--border);color:#fff;font-family:inherit;font-weight:700;transition:transform .1s;}
+.act-card{padding:16px 12px;border-radius:var(--rl);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center;border:none;background:var(--card);border:1px solid var(--border);color:var(--white);font-family:inherit;font-weight:700;transition:transform .1s;}
 .act-card:active{transform:scale(.91);}
 .act-ic{font-size:1.9rem;}
 .act-lbl{font-size:.88rem;}
@@ -130,17 +145,17 @@ body{font-family:'Nunito',system-ui,-apple-system,sans-serif;background:var(--bg
 .quiz-prog-txt{font-size:.95rem;font-weight:800;color:var(--dim);}
 .quiz-score-txt{font-size:1.05rem;font-weight:900;color:var(--yellow);}
 .prog-bar-wrap{width:100%;padding:8px 18px 0;height:12px;}
-.prog-bar-bg{width:100%;height:7px;background:rgba(255,255,255,.12);border-radius:100px;overflow:hidden;}
+.prog-bar-bg{width:100%;height:7px;background:var(--track);border-radius:100px;overflow:hidden;}
 .prog-bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--purple),var(--blue));transition:width .3s ease;}
 .timer-wrap{width:100%;padding:8px 18px 0;}
-.timer-bg{width:100%;height:9px;background:rgba(255,255,255,.12);border-radius:100px;overflow:hidden;}
+.timer-bg{width:100%;height:9px;background:var(--track);border-radius:100px;overflow:hidden;}
 .timer-fill{height:100%;border-radius:100px;transition:width .1s linear,background-color .3s;}
 .timer-txt{text-align:right;font-size:.82rem;font-weight:800;margin-top:4px;color:var(--dim);}
 .question-area{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 18px 10px;gap:14px;width:100%;}
 .mascot{font-size:3.8rem;line-height:1;transition:transform .3s;}
 .question-card{width:100%;max-width:420px;padding:26px 18px;text-align:center;border-radius:var(--rxl);background:rgba(108,99,255,.12);border:2px solid rgba(108,99,255,.32);}
 .question-txt{font-size:clamp(2rem,9vw,3.8rem);font-weight:900;line-height:1;letter-spacing:-.02em;}
-.answer-display{margin-top:12px;min-height:52px;background:rgba(255,255,255,.07);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:900;border:2px solid rgba(255,255,255,.18);letter-spacing:.06em;transition:border-color .2s,background .2s;}
+.answer-display{margin-top:12px;min-height:52px;background:var(--card);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:900;border:2px solid var(--border);letter-spacing:.06em;transition:border-color .2s,background .2s;color:var(--white);}
 .answer-display.has-val{border-color:var(--purple);background:rgba(108,99,255,.15);}
 .cursor{display:inline-block;width:2px;height:30px;background:var(--purple);margin-left:3px;animation:twinkle 1s ease-in-out infinite;vertical-align:middle;}
 
@@ -149,7 +164,7 @@ body{font-family:'Nunito',system-ui,-apple-system,sans-serif;background:var(--bg
 .pad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;}
 .pad-btn{height:62px;border-radius:var(--r);border:none;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .1s,filter .1s;}
 .pad-btn:active{transform:scale(.86);}
-.pad-digit{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.17);font-size:1.55rem;font-weight:800;}
+.pad-digit{background:var(--card);color:var(--white);border:1px solid var(--border);font-size:1.55rem;font-weight:800;}
 .pad-back{background:rgba(250,82,82,.18);color:var(--red);border:1px solid rgba(250,82,82,.28);font-size:1.35rem;font-weight:800;}
 .pad-submit{background:linear-gradient(135deg,#40c057,#69db7c);color:#fff;box-shadow:0 4px 14px rgba(64,192,87,.38);font-size:1.7rem;}
 .pad-submit:disabled{opacity:.3;box-shadow:none;cursor:not-allowed;}
@@ -162,16 +177,16 @@ body{font-family:'Nunito',system-ui,-apple-system,sans-serif;background:var(--bg
 .fb-icon{font-size:5.5rem;animation:bounce .5s ease;}
 .fb-title{font-size:2.4rem;font-weight:900;}
 .fb-pts{font-size:1.35rem;font-weight:800;opacity:.9;}
-.fb-ans{font-size:1.05rem;font-weight:700;opacity:.85;}
+.fb-ans{font-size:2.25rem;font-weight:900;opacity:1;letter-spacing:.01em;background:rgba(255,255,255,.18);padding:10px 22px;border-radius:100px;display:inline-block;}
 
 /* ─── Results Screen ─── */
-#s-results{padding:28px 20px 44px;align-items:center;gap:0;}
+#s-results{padding:28px 20px 44px;align-items:center;gap:6px;}
 .res-mascot{font-size:5rem;animation:bounce .6s ease .2s both;}
 .res-title{font-size:clamp(1.6rem,6vw,2.5rem);font-weight:900;text-align:center;margin:8px 0 3px;animation:slideUp .4s ease .3s both;opacity:0;}
 .res-sub{text-align:center;font-size:1.05rem;font-weight:700;margin-bottom:20px;color:var(--dim);animation:slideUp .4s ease .4s both;opacity:0;}
-.ring-wrap{position:relative;width:158px;height:158px;margin-bottom:18px;animation:slideUp .4s ease .5s both;opacity:0;}
+.ring-wrap{position:relative;width:158px;height:158px;margin-bottom:22px;flex-shrink:0;overflow:hidden;animation:slideUp .4s ease .5s both;opacity:0;}
 .ring-wrap svg{position:absolute;inset:0;transform:rotate(-90deg);}
-.ring-bg{fill:none;stroke:rgba(255,255,255,.1);stroke-width:10;}
+.ring-bg{fill:none;stroke:var(--track);stroke-width:10;}
 .ring-fill{fill:none;stroke:url(#rg);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1.2s ease;}
 .ring-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .ring-num{font-size:2.1rem;font-weight:900;line-height:1;}
@@ -180,7 +195,7 @@ body{font-family:'Nunito',system-ui,-apple-system,sans-serif;background:var(--bg
 .star-item{animation:starPop .5s ease both;}
 .star-item:nth-child(2){animation-delay:.14s;}
 .star-item:nth-child(3){animation-delay:.28s;}
-.enc-banner{padding:12px 22px;border-radius:var(--rl);font-size:1.05rem;font-weight:800;text-align:center;margin-bottom:18px;animation:slideUp .4s ease .7s both;opacity:0;}
+.enc-banner{padding:12px 22px;border-radius:var(--rl);font-size:1.05rem;font-weight:800;text-align:center;margin-top:4px;margin-bottom:18px;animation:slideUp .4s ease .7s both;opacity:0;}
 .correct-count{margin-bottom:18px;font-weight:700;color:var(--dim);font-size:.95rem;animation:slideUp .4s ease .72s both;opacity:0;}
 .vouch-earned{width:100%;max-width:420px;padding:16px 18px;border-radius:var(--rl);background:linear-gradient(135deg,rgba(255,224,102,.18),rgba(255,146,43,.18));border:2px solid rgba(255,224,102,.38);text-align:center;margin-bottom:18px;cursor:pointer;animation:slideUp .4s ease .78s both;opacity:0;}
 .ve-trophy{font-size:2.4rem;}
@@ -231,27 +246,27 @@ body{font-family:'Nunito',system-ui,-apple-system,sans-serif;background:var(--bg
 .set-label{font-size:.98rem;font-weight:700;}
 .set-sub{font-size:.78rem;color:var(--dim);font-weight:600;margin-top:2px;}
 /* Segmented control */
-.seg{display:flex;background:rgba(255,255,255,.08);border-radius:100px;padding:3px;gap:2px;flex-wrap:wrap;}
+.seg{display:flex;background:var(--track);border-radius:100px;padding:3px;gap:2px;flex-wrap:wrap;}
 .seg-btn{padding:6px 12px;border-radius:100px;border:none;font-family:inherit;font-size:.82rem;font-weight:800;cursor:pointer;color:var(--dim);background:none;transition:all .2s;}
 .seg-btn.active{background:var(--purple);color:#fff;box-shadow:0 2px 10px rgba(108,99,255,.4);}
 /* Toggle */
 .tog-wrap{position:relative;width:50px;height:27px;flex-shrink:0;}
 .tog-wrap input{opacity:0;width:0;height:0;position:absolute;}
-.tog-track{position:absolute;inset:0;border-radius:100px;background:rgba(255,255,255,.18);cursor:pointer;transition:background .25s;}
+.tog-track{position:absolute;inset:0;border-radius:100px;background:var(--track-strong);cursor:pointer;transition:background .25s;}
 .tog-track::after{content:'';position:absolute;top:3px;left:3px;width:21px;height:21px;border-radius:50%;background:#fff;transition:transform .25s;}
 .tog-wrap input:checked + .tog-track{background:var(--purple);}
 .tog-wrap input:checked + .tog-track::after{transform:translateX(23px);}
 /* Slider */
 .slider-wrap{display:flex;flex-direction:column;gap:7px;width:100%;}
 .slider-lbls{display:flex;justify-content:space-between;font-size:.78rem;color:var(--dim);font-weight:700;}
-.slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:100px;background:rgba(255,255,255,.14);outline:none;}
+.slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:100px;background:var(--track);outline:none;}
 .slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:26px;height:26px;border-radius:50%;background:var(--purple);cursor:pointer;box-shadow:0 2px 10px rgba(108,99,255,.45);}
 /* PIN */
 .pin-dots{display:flex;gap:13px;justify-content:center;margin-bottom:20px;}
-.pin-dot{width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.38);transition:all .2s;}
+.pin-dot{width:17px;height:17px;border-radius:50%;background:var(--track);border:2px solid var(--border);transition:all .2s;}
 .pin-dot.filled{background:var(--purple);border-color:var(--purple);box-shadow:0 0 12px rgba(108,99,255,.55);}
 .pin-pad{display:grid;grid-template-columns:repeat(3,68px);gap:11px;justify-content:center;}
-.pin-btn{height:68px;width:68px;border-radius:50%;border:none;font-family:inherit;font-size:1.45rem;font-weight:800;cursor:pointer;transition:transform .1s;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.17);}
+.pin-btn{height:68px;width:68px;border-radius:50%;border:none;font-family:inherit;font-size:1.45rem;font-weight:800;cursor:pointer;transition:transform .1s;background:var(--card);color:var(--white);border:1px solid var(--border);}
 .pin-btn:active{transform:scale(.86);}
 .pin-err{color:var(--red);font-weight:700;text-align:center;margin-top:10px;font-size:.9rem;}
 /* Parent sessions */
@@ -262,6 +277,30 @@ body{font-family:'Nunito',system-ui,-apple-system,sans-serif;background:var(--bg
 
 /* ─── Confetti ─── */
 .conf-piece{position:fixed;top:-12px;width:10px;height:14px;border-radius:2px;animation:confettiFall var(--d,2.5s) ease var(--dl,0s) forwards;z-index:200;pointer-events:none;}
+
+/* ─── Child Settings ─── */
+#s-csettings{padding:24px 20px 44px;align-items:center;gap:0;}
+.theme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;width:100%;}
+.theme-opt{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;border-radius:var(--rl);cursor:pointer;border:2px solid var(--border);background:var(--card);color:var(--white);font-family:inherit;font-weight:700;transition:transform .12s,border-color .15s;}
+.theme-opt:active{transform:scale(.95);}
+.theme-opt.sel{border-color:var(--purple);box-shadow:0 0 0 3px rgba(108,99,255,.18);}
+.theme-sw{display:flex;gap:4px;}
+.theme-sw-c{display:inline-block;width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.08);}
+.theme-lbl{font-size:.8rem;text-align:center;}
+
+/* ─── Summary Screen ─── */
+#s-summary{padding:24px 20px 44px;align-items:center;gap:0;}
+.sum-tabs{display:flex;gap:6px;background:rgba(127,127,127,.12);border-radius:100px;padding:4px;margin-bottom:18px;}
+.sum-tabs .seg-btn{padding:8px 18px;font-size:.92rem;}
+.sum-body{width:100%;max-width:600px;display:flex;flex-direction:column;gap:14px;}
+.sum-agg{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;}
+.sum-agg-card{padding:14px 10px;text-align:center;}
+.sum-agg-val{font-size:1.55rem;font-weight:900;line-height:1.1;color:var(--purple);}
+.sum-agg-lbl{font-size:.78rem;font-weight:700;color:var(--dim);margin-top:3px;}
+.sum-chart-card{padding:14px;}
+.sum-chart-title{font-size:.85rem;font-weight:800;color:var(--dim);margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase;}
+.sum-msg{padding:14px 18px;text-align:center;font-weight:800;font-size:1rem;}
+.sum-empty{text-align:center;color:var(--dim);font-weight:700;padding:24px 12px;}
 
 /* ─── Print ─── */
 @media print{
@@ -288,7 +327,7 @@ const Store = (() => {
 
   const KEYS = { KIDS:'ms_kids', SETTINGS:'ms_settings', SESSIONS:'ms_sessions', VOUCHERS:'ms_vouchers', PIN:'ms_pin' };
 
-  const DEFAULT_SETTINGS = { difficulty:'medium', timerSeconds:15, modules:{ multiplication:true, division:false }, voucherThreshold:140 };
+  const DEFAULT_SETTINGS = { difficulty:'medium', timerSeconds:15, questionCount:20, modules:{ multiplication:true, division:false } };
 
   return {
     getKids: () => read(KEYS.KIDS, []),
@@ -322,24 +361,17 @@ const Store = (() => {
     getPin: () => localStorage.getItem(KEYS.PIN) || '1234',
     savePin: (p) => localStorage.setItem(KEYS.PIN, p),
 
-    checkVoucher(kidId, kidName, threshold) {
-      const sessions = this.getSessions(kidId);
-      const vouchers = this.getVouchers(kidId);
-      const earned = vouchers.length;
-      if (Math.floor(sessions.length / 10) <= earned) return null;
-      const block = sessions.slice(earned * 10, earned * 10 + 10);
-      const avg = block.reduce((s, x) => s + x.score, 0) / block.length;
-      if (avg < threshold) return null;
-      const pct = avg / 200;
-      const ach = pct >= .95 ? 'Perfect Star Champion' : pct >= .85 ? 'Math Superstar' : pct >= .75 ? 'Math Champion' : 'Math Star';
-      const v = {
+    recordCertificate(kidId, kidName, score, maxScore, dateIso, difficulty) {
+      const pct = score / maxScore;
+      const ach = pct >= .98 ? 'Perfect Star Champion' : pct >= .95 ? 'Math Superstar' : 'Math Champion';
+      const c = {
         id: Date.now().toString(), kidId, kidName,
-        earnedDate: new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' }),
-        sessionsCompleted: earned * 10 + 10,
-        averageScore: Math.round(avg), achievement: ach
+        earnedDate: new Date(dateIso || Date.now()).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' }),
+        score, maxScore, percent: Math.round(pct * 100),
+        difficulty, achievement: ach
       };
-      this.saveVoucher(kidId, v);
-      return v;
+      this.saveVoucher(kidId, c);
+      return c;
     }
   };
 })();
@@ -367,20 +399,21 @@ const Questions = {
 /* ════════════════════════════════════════════
    SCORING
 ════════════════════════════════════════════ */
-const MAX_SCORE = 200; // 20q × 10pts
+const POINTS_PER_Q = 10;
+const maxScoreFor = (qCount) => qCount * POINTS_PER_Q;
 
 function calcPoints(correct, timeLeft, totalTime) {
   if (!correct) return 0;
-  return Math.max(1, Math.ceil(10 * Math.max(0, timeLeft / totalTime)));
+  return Math.max(1, Math.ceil(POINTS_PER_Q * Math.max(0, timeLeft / totalTime)));
 }
 
-function getStars(score) {
-  const p = score / MAX_SCORE;
+function getStars(score, maxScore) {
+  const p = score / maxScore;
   return p >= .9 ? 3 : p >= .6 ? 2 : 1;
 }
 
-function getEncouragement(score) {
-  const p = score / MAX_SCORE;
+function getEncouragement(score, maxScore) {
+  const p = score / maxScore;
   if (p >= .95) return { text:'🌟 PERFECT! You\'re a genius!', color:'#ffe066' };
   if (p >= .8)  return { text:'🚀 AMAZING! You\'re a Math Superstar!', color:'#69db7c' };
   if (p >= .6)  return { text:'🎉 GREAT JOB! Keep blasting off!', color:'#4dabf7' };
@@ -388,12 +421,16 @@ function getEncouragement(score) {
   return { text:'🌈 Keep going! Every try makes you stronger!', color:'#ff922b' };
 }
 
+function sessionMaxScore(sess) {
+  return maxScoreFor(sess.questionCount || 20);
+}
+
 function fmtDate(iso) {
   return new Date(iso).toLocaleDateString('en-US', { month:'short', day:'numeric' });
 }
 
-function scoreColor(score) {
-  const p = score / MAX_SCORE;
+function scoreColor(score, maxScore) {
+  const p = score / maxScore;
   return p >= .8 ? 'var(--green)' : p >= .6 ? 'var(--yellow)' : p >= .4 ? 'var(--orange)' : 'var(--red)';
 }
 
@@ -426,6 +463,24 @@ function div(cls, ...kids) { return el('div', { class: cls }, ...kids); }
 function span(cls, text) { return el('span', { class: cls }, text); }
 function btn(cls, txt, onClick) { const b = el('button', { class: `btn ${cls}` }, txt); b.addEventListener('click', onClick); return b; }
 function text(t) { return document.createTextNode(t); }
+
+/* ════════════════════════════════════════════
+   THEMES
+════════════════════════════════════════════ */
+const THEMES = [
+  { id:'galaxy',  name:'Galaxy',         emoji:'🌌', preview:['#0a0a1a','#6c63ff','#4dabf7'] },
+  { id:'pastel',  name:'Pastel',         emoji:'🌸', preview:['#fff5f7','#b39ddb','#a8e6cf'] },
+  { id:'bw',      name:'Black & White',  emoji:'⚫', preview:['#ffffff','#000000','#888888'] },
+  { id:'train',   name:'Train',          emoji:'🚂', preview:['#1e2530','#d63031','#fab005'] },
+  { id:'girly',   name:'Cute Girly',     emoji:'💖', preview:['#fff0f6','#f472b6','#c084fc'] },
+  { id:'unicorn', name:'Unicorn',        emoji:'🦄', preview:['#fde2ff','#a855f7','#34d399'] },
+  { id:'kawaii',  name:'Kawaii',         emoji:'🐰', preview:['#ffd6e7','#ff5da2','#84d3eb'] },
+];
+const DEFAULT_THEME = 'galaxy';
+function applyTheme(themeId) {
+  const id = THEMES.find(t => t.id === themeId) ? themeId : DEFAULT_THEME;
+  document.body.dataset.theme = id;
+}
 
 /* ════════════════════════════════════════════
    STARFIELD
@@ -464,6 +519,8 @@ const App = {
     // Clean up quiz timer if leaving quiz
     if (this._quizTimer) { clearInterval(this._quizTimer); this._quizTimer = null; }
     if (this._feedbackTimer) { clearTimeout(this._feedbackTimer); this._feedbackTimer = null; }
+    if (this._quizKeyHandler) { document.removeEventListener('keydown', this._quizKeyHandler); this._quizKeyHandler = null; }
+    if (this._homeClock && screen !== 'home') { clearInterval(this._homeClock); this._homeClock = null; }
     if ('kid'      in data) this.kid      = data.kid;
     if ('result'   in data) this.result   = data.result;
     if ('voucher'  in data) this.voucher  = data.voucher;
@@ -475,12 +532,15 @@ const App = {
   render() {
     const root = document.getElementById('root');
     while (root.firstChild) root.removeChild(root.firstChild);
+    applyTheme(this.kid && this.kid.theme);
     const screens = {
       welcome: () => renderWelcome(),
       home:    () => this.kid ? renderHome() : renderWelcome(),
       quiz:    () => this.kid ? renderQuiz() : renderWelcome(),
       results: () => (this.kid && this.result) ? renderResults() : renderWelcome(),
       voucher: () => renderVoucher(),
+      summary: () => this.kid ? renderSummary() : renderWelcome(),
+      settings:() => this.kid ? renderChildSettings() : renderWelcome(),
       parent:  () => renderParent(),
     };
     const fn = screens[this.screen] || screens.welcome;
@@ -596,6 +656,7 @@ function renderWelcome() {
           id: Date.now().toString(), name,
           avatar: selAvatar,
           color: COLORS[kids.length % COLORS.length],
+          theme: DEFAULT_THEME,
           createdAt: new Date().toISOString()
         };
         Store.saveKid(kid);
@@ -622,11 +683,10 @@ function renderWelcome() {
 function renderHome() {
   const { kid } = App;
   const sessions = Store.getSessions(kid.id);
-  const vouchers = Store.getVouchers(kid.id);
+  const certificates = Store.getVouchers(kid.id); // stored under "vouchers" key for back-compat
   const totalSess = sessions.length;
   const bestScore = totalSess ? Math.max(...sessions.map(s => s.score)) : 0;
   const avgScore  = totalSess ? Math.round(sessions.reduce((a,s) => a+s.score, 0) / totalSess) : 0;
-  const sessUntilV = 10 - (totalSess % 10);
   const recent = [...sessions].reverse().slice(0, 5);
 
   const screen = el('div', { id:'s-home', class:'screen home-screen' });
@@ -634,17 +694,37 @@ function renderHome() {
   // Header
   const hdr = div('home-hdr');
   const greeting = div('greeting');
+  greeting.style.cursor = 'pointer';
+  greeting.title = 'Edit profile & theme';
+  greeting.addEventListener('click', () => App.navigate('settings'));
   greeting.appendChild(el('span', { class:'hav' }, kid.avatar));
   const gt = div('gtext');
   gt.appendChild(el('div', { class:'hey' }, 'Welcome back,'));
   const nm = el('div', { class:'gname' });
   nm.textContent = kid.name + '!';
   gt.appendChild(nm);
+  const clockEl = el('div', { class:'home-clock' });
+  const tickClock = () => {
+    const now = new Date();
+    const day = now.toLocaleDateString('en-US', { weekday:'long', month:'short', day:'numeric' });
+    const time = now.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+    clockEl.textContent = `${day} · ${time}`;
+  };
+  tickClock();
+  clearInterval(App._homeClock);
+  App._homeClock = setInterval(tickClock, 30000);
+  gt.appendChild(clockEl);
   greeting.appendChild(gt);
   hdr.appendChild(greeting);
+
+  const hdrBtns = el('div', { class:'home-hdr-btns' });
+  const sumBtn = el('button', { class:'icon-btn', 'aria-label':'Progress Summary' }, '📊');
+  sumBtn.addEventListener('click', () => App.navigate('summary'));
+  hdrBtns.appendChild(sumBtn);
   const parBtn = el('button', { class:'icon-btn', 'aria-label':'Parent Settings' }, '⚙️');
   parBtn.addEventListener('click', () => App.navigate('parent'));
-  hdr.appendChild(parBtn);
+  hdrBtns.appendChild(parBtn);
+  hdr.appendChild(hdrBtns);
   screen.appendChild(hdr);
 
   // Stats
@@ -659,23 +739,6 @@ function renderHome() {
   });
   screen.appendChild(statsRow);
 
-  // Voucher progress
-  if (vouchers.length === 0) {
-    const vp = div('voucher-progress');
-    const vpInner = div('card vp-inner');
-    vpInner.appendChild(el('span', { style:{fontSize:'1.5rem'} }, '🎟️'));
-    const info = div('');
-    const msg = el('div', { style:{fontWeight:'800',fontSize:'.88rem'} });
-    msg.textContent = sessUntilV === 10
-      ? 'Complete 10 sessions to earn a Voucher!'
-      : `${sessUntilV} more game${sessUntilV>1?'s':''} for a Voucher!`;
-    info.appendChild(msg);
-    const barBg = div('vp-bar-bg'); const barFill = div('vp-bar-fill');
-    barFill.style.width = `${(totalSess % 10) * 10}%`;
-    barBg.appendChild(barFill); info.appendChild(barBg);
-    vpInner.appendChild(info); vp.appendChild(vpInner); screen.appendChild(vp);
-  }
-
   // Play button
   const playWrap = div('play-wrap');
   const playBtn = el('button', { class:'play-btn' }, '🚀 Play Now!');
@@ -687,11 +750,11 @@ function renderHome() {
   const actions = div('home-actions');
   const trophyCard = el('button', { class:'act-card' });
   trophyCard.appendChild(el('span', { class:'act-ic' }, '🏆'));
-  const tl = el('span', { class:'act-lbl' }, 'Trophies');
+  const tl = el('span', { class:'act-lbl' }, 'Certificates');
   const ts = el('span', { class:'act-sub' });
-  ts.textContent = vouchers.length > 0 ? `${vouchers.length} earned!` : 'None yet';
+  ts.textContent = certificates.length > 0 ? `${certificates.length} earned!` : 'None yet';
   trophyCard.appendChild(tl); trophyCard.appendChild(ts);
-  trophyCard.addEventListener('click', () => App.navigate('parent'));
+  trophyCard.addEventListener('click', () => App.navigate('summary'));
   actions.appendChild(trophyCard);
 
   const switchCard = el('button', { class:'act-card' });
@@ -701,19 +764,19 @@ function renderHome() {
   actions.appendChild(switchCard);
   screen.appendChild(actions);
 
-  // Vouchers
-  if (vouchers.length > 0) {
+  // Certificates
+  if (certificates.length > 0) {
     const vs = div('vouchers-wrap');
-    const vt = div('section-title'); vt.textContent = '🏆 My Vouchers';
+    const vt = div('section-title'); vt.textContent = '🏆 My Certificates';
     vs.appendChild(vt);
-    [...vouchers].reverse().forEach(v => {
+    [...certificates].reverse().forEach(v => {
       const vi = div('vouch-item');
       const vinfo = div('');
       const vn = el('div', { class:'vouch-name' }); vn.textContent = v.achievement;
       const vd = el('div', { class:'vouch-date' }); vd.textContent = v.earnedDate;
       vinfo.appendChild(vn); vinfo.appendChild(vd);
       vi.appendChild(vinfo);
-      vi.appendChild(el('span', { style:{fontSize:'1.4rem'} }, '🎟️'));
+      vi.appendChild(el('span', { style:{fontSize:'1.4rem'} }, '🏆'));
       vi.addEventListener('click', () => App.navigate('voucher', { voucher: v }));
       vs.appendChild(vi);
     });
@@ -729,13 +792,14 @@ function renderHome() {
       const si = div('sess-item');
       const left = div('');
       const sd = el('div', { class:'sess-date' }); sd.textContent = fmtDate(s.date);
-      const ss2 = el('div', { class:'sess-sub' }); ss2.textContent = `${s.correctAnswers}/20 correct · ${s.difficulty}`;
+      const sN = s.questionCount || 20;
+      const correctPct = (s.correctAnswers || 0) / sN;
+      const ss2 = el('div', { class:'sess-sub' }); ss2.textContent = `${s.correctAnswers}/${sN} correct · ${s.difficulty}`;
       left.appendChild(sd); left.appendChild(ss2);
       const right = el('div', { style:{textAlign:'right'} });
-      const sc2 = el('div', { class:'sess-score' }); sc2.textContent = `${s.score} pts`; sc2.style.color = scoreColor(s.score);
-      const pct = s.score / MAX_SCORE;
+      const sc2 = el('div', { class:'sess-score' }); sc2.textContent = `${s.score} pts`; sc2.style.color = scoreColor(correctPct, 1);
       const stars = el('div', { style:{fontSize:'.82rem'} });
-      stars.textContent = pct>=.9?'⭐⭐⭐':pct>=.6?'⭐⭐':'⭐';
+      stars.textContent = correctPct>=.9?'⭐⭐⭐':correctPct>=.6?'⭐⭐':'⭐';
       right.appendChild(sc2); right.appendChild(stars);
       si.appendChild(left); si.appendChild(right);
       sw.appendChild(si);
@@ -752,18 +816,35 @@ function renderHome() {
 function renderQuiz() {
   const { kid, settings } = App;
   const { difficulty, timerSeconds, modules } = settings;
-  const TOTAL_Q = 20;
+  const N = settings.questionCount || 20;
   const FEEDBACK_MS = 1600;
+  const RETRY_GAP = 2; // at least this many OTHER slots between original wrong and its retry
 
-  const questions = Questions.makeSet(TOTAL_Q, difficulty, modules);
-  let idx = 0, score = 0, answers = [], input = '', phase = 'question';
+  // Fixed-N slot model: every slot is either a fresh question or a queued retry.
+  // Each question gets AT MOST one retry. Session ends strictly when slotsAsked === N.
+  const retryQueue = []; // [{ question, dueAfter }]
+  let slotsAsked = 0;
+  let isCurrentRetry = false;
+  let score = 0, answers = [], input = '', phase = 'question';
+  let currentQ = pickNext();
   let timeLeft = timerSeconds * 10; // tenths
+
+  function pickNext() {
+    if (slotsAsked >= N) return null; // session over
+    const dueIdx = retryQueue.findIndex(r => slotsAsked >= r.dueAfter);
+    if (dueIdx >= 0) {
+      isCurrentRetry = true;
+      return retryQueue.splice(dueIdx, 1)[0].question;
+    }
+    isCurrentRetry = false;
+    return Questions.make(difficulty, modules);
+  }
 
   const screen = el('div', { id:'s-quiz', class:'screen quiz-screen' });
 
   /* --- Elements --- */
   const hdr = div('quiz-hdr');
-  const progTxt = el('span', { class:'quiz-prog-txt' }, `Question 1 of ${TOTAL_Q}`);
+  const progTxt = el('span', { class:'quiz-prog-txt' }, `Question 1 of ${N}`);
   const scoreTxt = el('span', { class:'quiz-score-txt' }, '⭐ 0 pts');
   hdr.appendChild(progTxt); hdr.appendChild(scoreTxt);
   screen.appendChild(hdr);
@@ -784,7 +865,7 @@ function renderQuiz() {
   const mascot = el('span', { class:'mascot' }, '🚀');
   const qCard = div('card question-card');
   const qTxt = div('question-txt');
-  qTxt.textContent = questions[0].display + ' = ?';
+  qTxt.textContent = currentQ.display + ' = ?';
   const ansDisp = div('answer-display');
   const cursor = div('cursor');
   ansDisp.appendChild(cursor);
@@ -818,11 +899,13 @@ function renderQuiz() {
 
   /* --- Update UI --- */
   function updateUI() {
-    const q = questions[idx];
-    qTxt.textContent = q.display + ' = ?';
-    progTxt.textContent = `Question ${idx + 1} of ${TOTAL_Q}`;
-    scoreTxt.textContent = `⭐ ${score} pts`;
-    progBarFill.style.width = `${(idx / TOTAL_Q) * 100}%`;
+    qTxt.textContent = currentQ.display + ' = ?';
+    const shown = Math.min(slotsAsked + 1, N);
+    progTxt.textContent = isCurrentRetry
+      ? `Question ${shown} of ${N} · Retry`
+      : `Question ${shown} of ${N}`;
+    scoreTxt.textContent = `⭐ ${Math.round(score)} pts`;
+    progBarFill.style.width = `${(slotsAsked / N) * 100}%`;
 
     const ratio = timeLeft / (timerSeconds * 10);
     timerFill.style.width = `${ratio * 100}%`;
@@ -866,42 +949,53 @@ function renderQuiz() {
     clearInterval(App._quizTimer);
     phase = 'feedback';
 
-    const q = questions[idx];
+    const q = currentQ;
     const userAns = input === '' ? null : parseInt(input, 10);
     const correct = userAns === q.answer;
+    // Per-slot points: wrong = 0; correct = 1–10 based on how fast the answer came in.
     const pts = calcPoints(correct, timeLeft / 10, timerSeconds);
 
     score += pts;
-    const record = { display: q.display, answer: q.answer, userAnswer: userAns, correct, points: pts };
+    slotsAsked++;
+    const wasRetrySlot = isCurrentRetry;
+    const record = { display: q.display, answer: q.answer, userAnswer: userAns, correct, points: pts, isRetry: wasRetrySlot };
     answers.push(record);
 
-    // Update live score in header immediately
-    scoreTxt.textContent = `⭐ ${score} pts`;
+    // Wrong FRESH question → queue ONE retry. Wrong retry → no further queue.
+    if (!correct && !wasRetrySlot) {
+      retryQueue.push({ question: q, dueAfter: slotsAsked + RETRY_GAP });
+    }
+
+    // Update live score in header immediately (rounded)
+    scoreTxt.textContent = `⭐ ${Math.round(score)} pts`;
 
     // Mascot animation
     mascot.textContent = correct ? '🎉' : '😢';
     mascot.style.animation = correct ? 'bounce .5s ease' : 'shake .45s ease';
     setTimeout(() => { mascot.style.animation = ''; }, 500);
 
-    // Show feedback overlay
-    showFeedback(correct, pts, q.answer);
+    // Show feedback overlay (rounded per-slot points)
+    showFeedback(correct, Math.round(pts), q.answer);
 
     App._feedbackTimer = setTimeout(() => {
       removeFeedback();
       mascot.style.animation = '';
-      if (idx + 1 >= TOTAL_Q) {
-        // Done!
+      const next = pickNext();
+      if (!next) {
+        // Session over — exactly N slots have been asked.
         App.navigate('results', {
           result: {
             answers: [...answers],
-            score,
+            score: Math.round(score),
             correctAnswers: answers.filter(a => a.correct).length,
+            questionCount: N,
+            askedCount: slotsAsked,
             difficulty, modules, timerSeconds,
             date: new Date().toISOString()
           }
         });
       } else {
-        idx++;
+        currentQ = next;
         input = '';
         phase = 'question';
         timeLeft = timerSeconds * 10;
@@ -947,6 +1041,23 @@ function renderQuiz() {
     }, 100);
   }
 
+  /* --- Keyboard input --- */
+  function handleKey(e) {
+    if (phase !== 'question') return;
+    if (e.key >= '0' && e.key <= '9') {
+      pressDigit(e.key);
+      e.preventDefault();
+    } else if (e.key === 'Backspace' || e.key === 'Delete') {
+      pressBack();
+      e.preventDefault();
+    } else if (e.key === 'Enter') {
+      if (input !== '') submitAnswer();
+      e.preventDefault();
+    }
+  }
+  document.addEventListener('keydown', handleKey);
+  App._quizKeyHandler = handleKey;
+
   updateUI();
   startTimer();
   return screen;
@@ -956,17 +1067,33 @@ function renderQuiz() {
    RESULTS SCREEN
 ════════════════════════════════════════════ */
 function renderResults() {
-  const { kid, result, settings } = App;
-  const { score, correctAnswers, answers, difficulty, modules, timerSeconds, date } = result;
+  const { kid, result } = App;
+  const { score, correctAnswers, answers, difficulty, modules, timerSeconds, date, questionCount, askedCount } = result;
+  const qCount = questionCount || 20;
+  const correctCount = correctAnswers != null ? correctAnswers : answers.filter(a => a.correct).length;
+  // Scoring: each correct slot earns 1–10 points based on answer speed (10 = instant). Wrong = 0.
+  const MAX = qCount * 10;
+  const correctPct = correctCount / qCount; // 0..1 — drives tiers, certificate, confetti
 
-  // Save session
-  const session = { id: Date.now().toString(), kidId: kid.id, date, score, correctAnswers, answers, difficulty, modules: JSON.stringify(modules), timerSeconds };
+  // Tier (label / stars / mascot) keyed on correctPct, not speed-scaled score.
+  const tier =
+    correctPct === 1   ? { label:'PERFECT!',    stars:3, mascot:'🏆', color:'#ffe066', enc:'🌟 PERFECT! You\'re a genius!' } :
+    correctPct >= 0.9  ? { label:'Amazing!',    stars:3, mascot:'🎊', color:'#69db7c', enc:'🚀 AMAZING! You\'re a Math Superstar!' } :
+    correctPct >= 0.6  ? { label:'Great Job!',  stars:2, mascot:'🚀', color:'#4dabf7', enc:'🎉 GREAT JOB! Keep blasting off!' } :
+                         { label:'Keep Going!', stars:1, mascot:'🌟', color:'#ff922b', enc:'🌈 Keep going! Every try makes you stronger!' };
+
+  // Save session (with new fields)
+  const session = { id: Date.now().toString(), kidId: kid.id, date, score, correctAnswers: correctCount, answers, difficulty, modules: JSON.stringify(modules), timerSeconds, questionCount: qCount, maxScore: MAX, correctPct, askedCount: askedCount || answers.length };
   Store.saveSession(kid.id, session);
-  const earnedVoucher = Store.checkVoucher(kid.id, kid.name, settings.voucherThreshold);
 
-  const stars = getStars(score);
-  const enc = getEncouragement(score);
-  const showConfetti = score / MAX_SCORE >= 0.8;
+  // Certificate only at 100% — any wrong (including a wrong retry) disqualifies.
+  const earnedCertificate = correctPct === 1
+    ? Store.recordCertificate(kid.id, kid.name, score, MAX, date, difficulty)
+    : null;
+
+  const stars = tier.stars;
+  const enc = { text: tier.enc, color: tier.color };
+  const showConfetti = correctPct >= 0.9;
 
   const screen = el('div', { id:'s-results', class:'screen results-screen' });
 
@@ -985,10 +1112,10 @@ function renderResults() {
     }
   }
 
-  const mascotEl = el('span', { class:'res-mascot' }, score === MAX_SCORE ? '🏆' : stars === 3 ? '🎊' : '🚀');
+  const mascotEl = el('span', { class:'res-mascot' }, tier.mascot);
   screen.appendChild(mascotEl);
 
-  const titleEl = el('h2', { class:'res-title grad' }, score === MAX_SCORE ? 'PERFECT!' : stars === 3 ? 'Amazing!' : stars === 2 ? 'Great Job!' : 'Keep Going!');
+  const titleEl = el('h2', { class:'res-title grad' }, tier.label);
   screen.appendChild(titleEl);
 
   const subEl = el('p', { class:'res-sub' }); subEl.textContent = kid.name + "'s Result";
@@ -996,12 +1123,12 @@ function renderResults() {
 
   // Score ring
   const RING_R = 65, RING_C = 2 * Math.PI * RING_R;
-  const targetOffset = RING_C * (1 - score / MAX_SCORE);
+  const targetOffset = RING_C * (1 - score / MAX);
 
   const ringWrap = div('ring-wrap');
   const svgNS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(svgNS, 'svg');
-  svg.setAttribute('viewBox', '0 0 160 160'); svg.setAttribute('width', '160'); svg.setAttribute('height', '160');
+  svg.setAttribute('viewBox', '0 0 160 160'); svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
   const defs = document.createElementNS(svgNS, 'defs');
   const grad = document.createElementNS(svgNS, 'linearGradient');
@@ -1023,7 +1150,7 @@ function renderResults() {
 
   const ringText = div('ring-text');
   const ringNum = div('ring-num'); ringNum.textContent = score;
-  const ringMax = div('ring-max'); ringMax.textContent = `/${MAX_SCORE}`;
+  const ringMax = div('ring-max'); ringMax.textContent = `/${MAX}`;
   ringText.appendChild(ringNum); ringText.appendChild(ringMax);
   ringWrap.appendChild(ringText);
   screen.appendChild(ringWrap);
@@ -1046,17 +1173,17 @@ function renderResults() {
   encBanner.style.color = enc.color;
   screen.appendChild(encBanner);
 
-  const ccEl = el('p', { class:'correct-count' }, `✓ ${correctAnswers}/20 correct`);
+  const ccEl = el('p', { class:'correct-count' }, `✓ ${correctCount}/${qCount} correct`);
   screen.appendChild(ccEl);
 
-  // Voucher earned
-  if (earnedVoucher) {
+  // Certificate earned (>=90%)
+  if (earnedCertificate) {
     const ve = div('vouch-earned');
     ve.appendChild(el('div', { class:'ve-trophy' }, '🏆'));
-    const vt = el('div', { class:'ve-title' }, 'Voucher Earned!');
-    const vs2 = el('div', { class:'ve-sub' }); vs2.textContent = `Tap to see your reward, ${kid.name}!`;
+    const vt = el('div', { class:'ve-title' }, 'Certificate Earned!');
+    const vs2 = el('div', { class:'ve-sub' }); vs2.textContent = `Tap to see your certificate, ${kid.name}!`;
     ve.appendChild(vt); ve.appendChild(vs2);
-    ve.addEventListener('click', () => App.navigate('voucher', { voucher: earnedVoucher }));
+    ve.addEventListener('click', () => App.navigate('voucher', { voucher: earnedCertificate }));
     screen.appendChild(ve);
   }
 
@@ -1117,7 +1244,7 @@ function renderVoucher() {
 
   card.appendChild(el('span', { class:'vc-logo' }, '🏆'));
   card.appendChild(el('div', { class:'vc-label' }, 'Math Stars Certificate'));
-  card.appendChild(el('div', { class:'vc-for' }, 'This voucher belongs to'));
+  card.appendChild(el('div', { class:'vc-for' }, 'Awarded to'));
 
   const nameEl = el('div', { class:'vc-name' });
   nameEl.textContent = v.kidName;
@@ -1127,11 +1254,14 @@ function renderVoucher() {
   card.appendChild(achEl);
 
   const descEl = el('div', { class:'vc-desc' });
-  descEl.textContent = `For completing ${v.sessionsCompleted} math sessions with outstanding performance!`;
+  descEl.textContent = `For scoring ${v.percent ?? Math.round((v.score || 0) / (v.maxScore || 200) * 100)}% on a math challenge!`;
   card.appendChild(descEl);
 
   const stats = div('vc-stats');
-  [[v.sessionsCompleted,'Sessions'],[v.averageScore,'Avg Score'],[MAX_SCORE,'Max Score']].forEach(([val, lbl]) => {
+  const certScore = v.score != null ? v.score : v.averageScore;
+  const certMax = v.maxScore || 200;
+  const certPct = v.percent != null ? `${v.percent}%` : `${Math.round((certScore / certMax) * 100)}%`;
+  [[certScore, 'Score'], [certMax, 'Max'], [certPct, 'Result']].forEach(([val, lbl]) => {
     const s = div('');
     const sv = el('div', { class:'vc-stat-val' }); sv.textContent = val;
     const sl = el('div', { class:'vc-stat-lbl' }); sl.textContent = lbl;
@@ -1147,12 +1277,12 @@ function renderVoucher() {
   screen.appendChild(cardWrap);
 
   const actWrap = div('vouch-actions');
-  const printBtn = btn('btn-primary', '🖨️ Print Voucher', () => window.print());
+  const printBtn = btn('btn-primary', '🖨️ Print Certificate', () => window.print());
   const playBtn  = btn('btn-success', '🚀 Play Again!',   () => App.navigate('quiz'));
   actWrap.appendChild(printBtn); actWrap.appendChild(playBtn);
   screen.appendChild(actWrap);
 
-  const tipEl = el('p', { class:'vouch-tip' }, 'Tip: Tap "Print Voucher" to save as PDF! 🎉');
+  const tipEl = el('p', { class:'vouch-tip' }, 'Tip: Tap "Print Certificate" to save as PDF! 🎉');
   screen.appendChild(tipEl);
 
   return screen;
@@ -1260,8 +1390,8 @@ function renderParent() {
         settings.difficulty = v;
         diffSeg.querySelectorAll('.seg-btn').forEach(x => x.classList.remove('active'));
         b.classList.add('active');
-        App.navigate('home', { settings });
-        showDashboard();
+        App.settings = settings;
+        Store.saveSettings(settings);
       });
       diffSeg.appendChild(b);
     });
@@ -1283,7 +1413,8 @@ function renderParent() {
     slider.addEventListener('input', () => {
       settings.timerSeconds = parseInt(slider.value, 10);
       timerSub.textContent = `${settings.timerSeconds} seconds`;
-      App.navigate('home', { settings });
+      App.settings = settings;
+      Store.saveSettings(settings);
     });
     const lbls = div('slider-lbls');
     lbls.appendChild(el('span', {}, '5s (Fast)'));
@@ -1307,7 +1438,8 @@ function renderParent() {
         const next = { ...settings.modules, [key]: inp2.checked };
         if (!next.multiplication && !next.division) { inp2.checked = !inp2.checked; return; }
         settings.modules = next;
-        App.navigate('home', { settings });
+        App.settings = settings;
+        Store.saveSettings(settings);
       });
       const track = div('tog-track');
       tog.appendChild(inp2); tog.appendChild(track);
@@ -1316,27 +1448,27 @@ function renderParent() {
     });
     qsCard.appendChild(modSection);
 
-    // Voucher threshold
-    const vtSection = div('');
-    const vtRow = div('set-row');
-    const vtInfo = div('');
-    const vtLbl = div('set-label'); vtLbl.textContent = 'Voucher Min Score';
-    const vtSub = div('set-sub'); vtSub.textContent = `${settings.voucherThreshold}/${MAX_SCORE} to earn a voucher`;
-    vtInfo.appendChild(vtLbl); vtInfo.appendChild(vtSub);
-    vtRow.appendChild(vtInfo);
-    vtSection.appendChild(vtRow);
-    const vtSliderWrap = div('slider-wrap'); vtSliderWrap.style.marginTop = '10px';
-    const vtSlider = el('input', { type:'range', class:'slider', min:'80', max:'180', step:'20', value:settings.voucherThreshold });
-    vtSlider.addEventListener('input', () => {
-      settings.voucherThreshold = parseInt(vtSlider.value, 10);
-      vtSub.textContent = `${settings.voucherThreshold}/${MAX_SCORE} to earn a voucher`;
-      App.navigate('home', { settings });
+    // Question count
+    const qcRow = div('set-row');
+    qcRow.style.flexDirection = 'column';
+    qcRow.style.alignItems = 'flex-start';
+    qcRow.style.gap = '8px';
+    qcRow.style.marginTop = '14px';
+    const qcLabel = div('set-label'); qcLabel.textContent = 'Questions per Test';
+    const qcSeg = div('seg');
+    [10, 20, 30].forEach(n => {
+      const b = el('button', { class:'seg-btn' + (settings.questionCount === n ? ' active' : '') }, `${n}`);
+      b.addEventListener('click', () => {
+        settings.questionCount = n;
+        qcSeg.querySelectorAll('.seg-btn').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        App.settings = settings;
+        Store.saveSettings(settings);
+      });
+      qcSeg.appendChild(b);
     });
-    const vtLbls = div('slider-lbls');
-    vtLbls.appendChild(el('span', {}, '80 (Easy)')); vtLbls.appendChild(el('span', {}, '180 (Hard)'));
-    vtSliderWrap.appendChild(vtSlider); vtSliderWrap.appendChild(vtLbls);
-    vtSection.appendChild(vtSliderWrap);
-    qsCard.appendChild(vtSection);
+    qcRow.appendChild(qcLabel); qcRow.appendChild(qcSeg);
+    qsCard.appendChild(qcRow);
 
     qs.appendChild(qsCard);
     screen.appendChild(qs);
@@ -1435,10 +1567,11 @@ function renderParent() {
           sessList.style.marginTop = '10px';
           [...kidSessions].reverse().forEach(s => {
             const si = div('par-sess-item');
+            const sMax = sessionMaxScore(s);
             const dateEl2 = el('div', { class:'psi-date' }); dateEl2.textContent = fmtDate(s.date);
-            const corrEl = el('div', { class:'psi-correct' }); corrEl.textContent = `${s.correctAnswers}/20 ✓`;
+            const corrEl = el('div', { class:'psi-correct' }); corrEl.textContent = `${s.correctAnswers}/${s.questionCount || 20} ✓`;
             const scoreEl = el('div', { class:'psi-score' }); scoreEl.textContent = `${s.score} pts`;
-            scoreEl.style.color = scoreColor(s.score);
+            scoreEl.style.color = scoreColor(s.score, sMax);
             si.appendChild(dateEl2); si.appendChild(corrEl); si.appendChild(scoreEl);
             sessList.appendChild(si);
           });
@@ -1458,8 +1591,321 @@ function renderParent() {
 }
 
 /* ════════════════════════════════════════════
+   CHILD SETTINGS SCREEN
+════════════════════════════════════════════ */
+function renderChildSettings() {
+  const { kid } = App;
+  const screen = el('div', { id:'s-csettings', class:'screen csettings-screen' });
+
+  const backBtn = btn('btn-ghost par-back', '← Back', () => App.navigate('home'));
+  screen.appendChild(backBtn);
+
+  const titleRow = div('par-title');
+  titleRow.appendChild(el('span', { style:{fontSize:'2rem'} }, '🎨'));
+  titleRow.appendChild(el('h1', {}, 'My Profile'));
+  screen.appendChild(titleRow);
+
+  // ─── Identity ───
+  const idSection = div('set-section');
+  const idTitle = div('set-sec-title'); idTitle.textContent = 'Name & Avatar';
+  idSection.appendChild(idTitle);
+  const idCard = div('card set-card');
+
+  let editingName = false;
+  let nameDraft = kid.name;
+  let avatarDraft = kid.avatar;
+
+  const nameRow = div('set-row');
+  nameRow.style.flexDirection = 'column';
+  nameRow.style.alignItems = 'stretch';
+  nameRow.style.gap = '8px';
+  const nameLabel = div('set-label'); nameLabel.textContent = 'Your name';
+  nameRow.appendChild(nameLabel);
+  const nameInp = el('input', { class:'inp', maxlength:'20', value:nameDraft });
+  nameInp.addEventListener('input', () => { nameDraft = nameInp.value; });
+  nameRow.appendChild(nameInp);
+  idCard.appendChild(nameRow);
+
+  const avLabel = div('set-label'); avLabel.textContent = 'Pick an avatar'; avLabel.style.marginTop = '14px';
+  idCard.appendChild(avLabel);
+  const avPicker = div('av-picker');
+  avPicker.style.justifyContent = 'flex-start';
+  AVATARS.forEach(a => {
+    const opt = el('button', { class:'av-opt' + (a === avatarDraft ? ' sel' : '') }, a);
+    opt.addEventListener('click', () => {
+      avatarDraft = a;
+      avPicker.querySelectorAll('.av-opt').forEach(x => x.classList.remove('sel'));
+      opt.classList.add('sel');
+    });
+    avPicker.appendChild(opt);
+  });
+  idCard.appendChild(avPicker);
+
+  const idSaveMsg = el('p', { style:{fontWeight:'700',marginTop:'8px',textAlign:'center',display:'none'} });
+  const idSaveBtn = btn('btn-primary', 'Save Changes', () => {
+    const name = nameDraft.trim();
+    if (!name) { idSaveMsg.textContent = 'Name cannot be empty.'; idSaveMsg.style.color = 'var(--red)'; idSaveMsg.style.display = 'block'; return; }
+    const others = Store.getKids().filter(k => k.id !== kid.id);
+    if (others.some(k => k.name.toLowerCase() === name.toLowerCase())) {
+      idSaveMsg.textContent = 'That name is already taken!'; idSaveMsg.style.color = 'var(--red)'; idSaveMsg.style.display = 'block'; return;
+    }
+    const updated = { ...kid, name, avatar: avatarDraft };
+    Store.saveKid(updated);
+    App.kid = updated;
+    idSaveMsg.textContent = '✓ Saved!'; idSaveMsg.style.color = 'var(--green)'; idSaveMsg.style.display = 'block';
+    setTimeout(() => { idSaveMsg.style.display = 'none'; }, 1500);
+  });
+  idSaveBtn.style.marginTop = '12px';
+  idCard.appendChild(idSaveBtn);
+  idCard.appendChild(idSaveMsg);
+  idSection.appendChild(idCard);
+  screen.appendChild(idSection);
+
+  // ─── Theme ───
+  const thSection = div('set-section');
+  const thTitle = div('set-sec-title'); thTitle.textContent = 'Theme';
+  thSection.appendChild(thTitle);
+  const thCard = div('card set-card');
+
+  const thGrid = div('theme-grid');
+  THEMES.forEach(t => {
+    const opt = el('button', { class:'theme-opt' + ((kid.theme || DEFAULT_THEME) === t.id ? ' sel' : '') });
+    const sw = div('theme-sw');
+    t.preview.forEach(c => {
+      const s = el('span', { class:'theme-sw-c', style:{ background:c } });
+      sw.appendChild(s);
+    });
+    opt.appendChild(sw);
+    const lbl = el('div', { class:'theme-lbl' });
+    lbl.textContent = `${t.emoji} ${t.name}`;
+    opt.appendChild(lbl);
+    opt.addEventListener('click', () => {
+      const updated = { ...App.kid, theme: t.id };
+      Store.saveKid(updated);
+      App.kid = updated;
+      thGrid.querySelectorAll('.theme-opt').forEach(x => x.classList.remove('sel'));
+      opt.classList.add('sel');
+      applyTheme(t.id);
+    });
+    thGrid.appendChild(opt);
+  });
+  thCard.appendChild(thGrid);
+  thSection.appendChild(thCard);
+  screen.appendChild(thSection);
+
+  return screen;
+}
+
+/* ════════════════════════════════════════════
+   SUMMARY SCREEN
+════════════════════════════════════════════ */
+function renderSummary() {
+  const { kid } = App;
+  const sessions = Store.getSessions(kid.id);
+  const certificates = Store.getVouchers(kid.id);
+  let view = 'day'; // 'day' | 'month' | 'year'
+
+  const screen = el('div', { id:'s-summary', class:'screen summary-screen' });
+  const backBtn = btn('btn-ghost par-back', '← Back', () => App.navigate('home'));
+  screen.appendChild(backBtn);
+
+  const titleRow = div('par-title');
+  titleRow.appendChild(el('span', { style:{fontSize:'2rem'} }, '📊'));
+  titleRow.appendChild(el('h1', {}, 'My Progress'));
+  screen.appendChild(titleRow);
+
+  const tabs = div('sum-tabs');
+  const tabBtns = [];
+  [['day','Day'],['month','Month'],['year','Year']].forEach(([v, lbl]) => {
+    const b = el('button', { class:'seg-btn' + (view === v ? ' active' : '') }, lbl);
+    b.addEventListener('click', () => {
+      view = v;
+      tabBtns.forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      rebuildBody();
+    });
+    tabBtns.push(b);
+    tabs.appendChild(b);
+  });
+  screen.appendChild(tabs);
+
+  const body = div('sum-body');
+  screen.appendChild(body);
+
+  function bucketsFor(view) {
+    const now = new Date();
+    // Returns: [{label, start, end}] where end is exclusive.
+    if (view === 'day') {
+      // last 7 days (oldest → newest)
+      const out = [];
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date(now); d.setDate(now.getDate() - i); d.setHours(0,0,0,0);
+        const next = new Date(d); next.setDate(d.getDate() + 1);
+        out.push({ label: d.toLocaleDateString('en-US', { weekday:'short' }), start: d, end: next });
+      }
+      return out;
+    }
+    if (view === 'month') {
+      // each day of current month
+      const y = now.getFullYear(), m = now.getMonth();
+      const last = new Date(y, m + 1, 0).getDate();
+      const out = [];
+      for (let day = 1; day <= last; day++) {
+        const d = new Date(y, m, day);
+        const next = new Date(y, m, day + 1);
+        out.push({ label: String(day), start: d, end: next });
+      }
+      return out;
+    }
+    // year: 12 months of current year
+    const y = now.getFullYear();
+    const monthsShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return monthsShort.map((mn, i) => ({
+      label: mn,
+      start: new Date(y, i, 1),
+      end: new Date(y, i + 1, 1)
+    }));
+  }
+
+  function bucketStats(b) {
+    const inB = sessions.filter(s => {
+      const t = new Date(s.date).getTime();
+      return t >= b.start.getTime() && t < b.end.getTime();
+    });
+    if (inB.length === 0) return { count: 0, avgPct: 0, totalScore: 0 };
+    let pctSum = 0;
+    inB.forEach(s => { pctSum += (s.correctAnswers || 0) / (s.questionCount || 20); });
+    return { count: inB.length, avgPct: pctSum / inB.length, totalScore: inB.reduce((a,s)=>a+s.score,0) };
+  }
+
+  function trendMessage(buckets) {
+    const withData = buckets.filter(b => b._stats.count > 0);
+    if (withData.length < 2) return { text:'Keep playing to see your progress! 🌱', tone:'neutral' };
+    const half = Math.ceil(withData.length / 2);
+    const earlier = withData.slice(0, half);
+    const later = withData.slice(half);
+    const avg = arr => arr.reduce((a,b)=>a+b._stats.avgPct,0) / arr.length;
+    const delta = avg(later) - avg(earlier);
+    if (delta > 0.05) return { text:'🚀 Amazing progress! You\'re getting faster and sharper!', tone:'up' };
+    if (delta < -0.05) return { text:'💪 Keep practising — bumpy days happen, you\'ve got this!', tone:'down' };
+    return { text:'⭐ Steady and strong — practice every day pays off!', tone:'flat' };
+  }
+
+  function rebuildBody() {
+    while (body.firstChild) body.removeChild(body.firstChild);
+
+    const buckets = bucketsFor(view);
+    buckets.forEach(b => { b._stats = bucketStats(b); });
+
+    // Aggregates
+    const totalCount = sessions.length;
+    const avgPct = totalCount ? sessions.reduce((a,s) => a + ((s.correctAnswers || 0) / (s.questionCount || 20)), 0) / totalCount : 0;
+    const totalStars = sessions.reduce((a,s) => {
+      const p = (s.correctAnswers || 0) / (s.questionCount || 20);
+      return a + (p >= 0.9 ? 3 : p >= 0.6 ? 2 : 1);
+    }, 0);
+
+    const aggRow = div('sum-agg');
+    [
+      [totalCount, 'Tests Played'],
+      [Math.round(avgPct * 100) + '%', 'Average Score'],
+      [totalStars, 'Stars Earned'],
+      [certificates.length, 'Certificates']
+    ].forEach(([v, l]) => {
+      const c = div('card sum-agg-card');
+      const vEl = div('sum-agg-val'); vEl.textContent = v;
+      const lEl = div('sum-agg-lbl'); lEl.textContent = l;
+      c.appendChild(vEl); c.appendChild(lEl);
+      aggRow.appendChild(c);
+    });
+    body.appendChild(aggRow);
+
+    // Chart card
+    const chartCard = div('card sum-chart-card');
+    const chartTitle = div('sum-chart-title');
+    chartTitle.textContent = view === 'day' ? 'Last 7 days' : view === 'month' ? 'This month' : 'This year';
+    chartCard.appendChild(chartTitle);
+
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const N = buckets.length;
+    const W = Math.max(300, N * 28);
+    const H = 160;
+    const PAD_L = 28, PAD_R = 8, PAD_T = 10, PAD_B = 26;
+    const innerW = W - PAD_L - PAD_R;
+    const innerH = H - PAD_T - PAD_B;
+    const barW = (innerW / N) * 0.7;
+    const slot = innerW / N;
+    const svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('width', '100%');
+    svg.setAttribute('height', String(H));
+    svg.style.display = 'block';
+
+    // Y-axis grid lines at 0/50/100%
+    [0, 0.5, 1].forEach(p => {
+      const y = PAD_T + innerH - p * innerH;
+      const ln = document.createElementNS(svgNS, 'line');
+      ln.setAttribute('x1', PAD_L); ln.setAttribute('x2', W - PAD_R);
+      ln.setAttribute('y1', y); ln.setAttribute('y2', y);
+      ln.setAttribute('stroke', 'currentColor'); ln.setAttribute('stroke-opacity', '0.12');
+      ln.setAttribute('stroke-dasharray', p === 0 ? '0' : '3,3');
+      svg.appendChild(ln);
+      const txt = document.createElementNS(svgNS, 'text');
+      txt.setAttribute('x', PAD_L - 6); txt.setAttribute('y', y + 4);
+      txt.setAttribute('font-size', '10'); txt.setAttribute('text-anchor', 'end');
+      txt.setAttribute('fill', 'currentColor'); txt.setAttribute('opacity', '0.55');
+      txt.textContent = Math.round(p * 100) + '%';
+      svg.appendChild(txt);
+    });
+
+    buckets.forEach((b, i) => {
+      const pct = b._stats.avgPct;
+      const x = PAD_L + i * slot + (slot - barW) / 2;
+      const h = pct * innerH;
+      const y = PAD_T + innerH - h;
+      if (b._stats.count > 0) {
+        const rect = document.createElementNS(svgNS, 'rect');
+        rect.setAttribute('x', x); rect.setAttribute('y', y);
+        rect.setAttribute('width', barW); rect.setAttribute('height', Math.max(2, h));
+        rect.setAttribute('rx', '3');
+        const color = pct >= .9 ? '#69db7c' : pct >= .6 ? '#ffe066' : pct >= .4 ? '#ff922b' : '#ff6b6b';
+        rect.setAttribute('fill', color);
+        svg.appendChild(rect);
+      }
+      // x-axis label
+      const label = document.createElementNS(svgNS, 'text');
+      label.setAttribute('x', x + barW / 2); label.setAttribute('y', H - 8);
+      label.setAttribute('font-size', '10'); label.setAttribute('text-anchor', 'middle');
+      label.setAttribute('fill', 'currentColor'); label.setAttribute('opacity', '0.6');
+      const showLabel = view === 'month' ? (i % 3 === 0 || i === N - 1) : true;
+      if (showLabel) label.textContent = b.label;
+      svg.appendChild(label);
+    });
+
+    chartCard.appendChild(svg);
+    body.appendChild(chartCard);
+
+    // Encouraging trend message
+    const tm = trendMessage(buckets);
+    const msg = div('card sum-msg');
+    msg.textContent = tm.text;
+    body.appendChild(msg);
+
+    if (totalCount === 0) {
+      const empty = div('sum-empty');
+      empty.textContent = 'No tests played yet — tap Play Now! to start.';
+      body.appendChild(empty);
+    }
+  }
+
+  rebuildBody();
+  return screen;
+}
+
+/* ════════════════════════════════════════════
    START
 ════════════════════════════════════════════ */
+applyTheme(DEFAULT_THEME);
 App.render();
 </script>
 </body>
