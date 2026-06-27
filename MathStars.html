@@ -320,6 +320,12 @@ body{font-family:'Nunito',system-ui,-apple-system,sans-serif;background:var(--bg
 .rev-tile-sub{font-size:.7rem;font-weight:700;color:var(--dim);}
 .rev-tile-best{color:var(--gold-text);}
 .rev-tile.sel .rev-tile-sub{color:var(--purple);}
+.rev-order-row{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:520px;margin-bottom:14px;}
+.rev-order-label{font-size:.85rem;font-weight:800;color:var(--dim);}
+.rev-order-pill{display:flex;gap:6px;padding:5px;border-radius:var(--rl);background:var(--card);border:2px solid var(--border);}
+.rev-order-btn{padding:9px 16px;border-radius:calc(var(--rl) - 4px);cursor:pointer;border:none;background:transparent;color:var(--dim);font-family:inherit;font-weight:800;font-size:.92rem;transition:background .15s,color .15s;}
+.rev-order-btn:active{transform:scale(.95);}
+.rev-order-btn.sel{background:rgba(108,99,255,.16);color:var(--purple);box-shadow:0 0 0 2px rgba(108,99,255,.28) inset;}
 .rev-start{max-width:520px;margin-top:8px;}
 .rev-user-ans{font-size:.78rem;font-weight:700;color:var(--dim);white-space:nowrap;}
 .bd-item .bd-pts{min-width:78px;}
@@ -346,7 +352,7 @@ body{font-family:'Nunito',system-ui,-apple-system,sans-serif;background:var(--bg
    The auto-update banner reads this from the live HTML
    and compares against the running value.
 ════════════════════════════════════════════ */
-const APP_VERSION = "2026-05-13-3";
+const APP_VERSION = "2026-06-27-1";
 
 // Module-scope flags for the auto-update banner.
 // `didRun` prevents re-checking on every render; `dismissed` hides the banner for this session.
@@ -2064,6 +2070,7 @@ function renderSummary() {
 function renderRevision() {
   const { kid } = App;
   let selectedTemplate = App._revSelected || null; // 1..12 — persists across re-renders
+  App._revOrder = 'order'; // default to In Order on every visit ('order' | 'random')
 
   // Compute best score per template (1..12) from saved revision sessions
   const revSessions = Store.getRevisionSessions(kid.id);
@@ -2084,7 +2091,7 @@ function renderRevision() {
   titleRow.appendChild(el('h1', {}, 'Revision — Times Tables'));
   screen.appendChild(titleRow);
 
-  const sub = el('p', { class:'rev-sub' }, 'Pick a times table to practise. 12 questions in order.');
+  const sub = el('p', { class:'rev-sub' }, 'Pick a times table to practise. 12 questions.');
   screen.appendChild(sub);
 
   // Template grid — ×1 through ×12 (4×3)
@@ -2109,6 +2116,24 @@ function renderRevision() {
   }
   screen.appendChild(grid);
 
+  // Order toggle — In Order / Random. Shared toggle, applies to whichever table is picked.
+  const orderRow = div('rev-order-row');
+  orderRow.appendChild(el('span', { class:'rev-order-label' }, 'Order:'));
+  const orderPill = div('rev-order-pill');
+  const orderBtns = {};
+  [['order', '🔢 In Order'], ['random', '🔀 Random']].forEach(([mode, text]) => {
+    const ob = el('button', { class: 'rev-order-btn' + (App._revOrder === mode ? ' sel' : '') }, text);
+    ob.addEventListener('click', () => {
+      App._revOrder = mode;
+      Object.values(orderBtns).forEach(x => x.classList.remove('sel'));
+      ob.classList.add('sel');
+    });
+    orderBtns[mode] = ob;
+    orderPill.appendChild(ob);
+  });
+  orderRow.appendChild(orderPill);
+  screen.appendChild(orderRow);
+
   // Start button
   const startBtn = el('button', { class:'btn btn-primary btn-lg btn-full rev-start' },
     selectedTemplate ? `🚀 Start × ${selectedTemplate} Table` : '🚀 Pick a Table First');
@@ -2124,7 +2149,7 @@ function renderRevision() {
 }
 
 /* ════════════════════════════════════════════
-   REVISION QUIZ — 12 sequential questions, fixed order
+   REVISION QUIZ — 12 questions, in order or shuffled (App._revOrder)
 ════════════════════════════════════════════ */
 function renderRevisionQuiz() {
   const { kid } = App;
@@ -2133,10 +2158,17 @@ function renderRevisionQuiz() {
   const TIMER_S = 10; // 10s per question
   const FEEDBACK_MS = 1400;
 
-  // Fixed-order question list: template × 1, template × 2, … template × 12
+  // Question list: template × 1 … template × 12.
+  // In Order = fixed sequence; Random = Fisher–Yates shuffle (each asked once, no repeats).
   const questions = [];
   for (let m = 1; m <= 12; m++) {
     questions.push({ display: `${template} × ${m}`, answer: template * m });
+  }
+  if (App._revOrder === 'random') {
+    for (let i = questions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [questions[i], questions[j]] = [questions[j], questions[i]];
+    }
   }
 
   let idx = 0;
